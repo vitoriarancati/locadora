@@ -24,9 +24,7 @@ public class CadastrarCliente extends JFrame {
 	private JTextField textNome;
 	private JTextField textEmail;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
