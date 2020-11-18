@@ -2,16 +2,11 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import model.bean.Cliente;
-import model.bean.Filme;
 import model.dao.ClienteDAO;
-import model.dao.FilmeDAO;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
