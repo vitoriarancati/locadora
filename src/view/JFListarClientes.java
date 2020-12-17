@@ -7,7 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -81,6 +86,17 @@ public class JFListarClientes extends JFrame {
 		contentPane.add(BTNCadastrar);
 		
 		JButton BTNAlterar = new JButton("Alterar Cliente");
+		BTNAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(JTListar.getSelectedRow()!= -1) {
+					JFAtualizarClientes af = new JFAtualizarClientes((int)JTListar.getValueAt(JTListar.getSelectedRow(), 0));
+					af.setVisible(true);
+				}else {
+					JOptionPane.showMessageDialog(null, "Selecione um Cliente!");
+				}
+				readJTable();
+			}
+		});
 		BTNAlterar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 12));
 		BTNAlterar.setBounds(258, 330, 172, 36);
 		contentPane.add(BTNAlterar);

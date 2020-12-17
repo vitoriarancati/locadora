@@ -25,10 +25,6 @@ import java.awt.event.ActionEvent;
 
 public class JFListarFilmes extends JFrame {
 
-	/**
-	 * 
-	 */
-
 	private JPanel contentPane;
 	private JTable JTFilmes;
 
@@ -90,7 +86,8 @@ public class JFListarFilmes extends JFrame {
 		BTNAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(JTFilmes.getSelectedRow()!= -1) {
-					JFAtualizarFilme af = new JFAtualizarFilme((int)JTFilmes.getValueAt(JTFilmes.getSelectedRow(), 0));
+					JFAtualizarFilme af = new JFAtualizarFilme(
+							(int)JTFilmes.getValueAt(JTFilmes.getSelectedRow(), 0));
 					af.setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null, "Selecione um filme!");
