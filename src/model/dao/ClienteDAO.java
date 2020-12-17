@@ -94,6 +94,7 @@ public class ClienteDAO {
 			stmt.setString(2, c.getNomecompleto());
 			stmt.setInt(3, c.getIdade());
 			stmt.setString(4, c.getEmail());
+			stmt.setInt(5, c.getIdCliente());
 			stmt.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso!");
 		} catch (SQLException e) { 

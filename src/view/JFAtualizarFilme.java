@@ -113,7 +113,7 @@ public class JFAtualizarFilme extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JTextArea textSinopse = new JTextArea();
-		scrollPane.setRowHeaderView(textSinopse);
+		scrollPane.setViewportView(textSinopse);
 		textSinopse.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 12));
 		textSinopse.setBackground(new Color(255, 255, 255));
 		
@@ -153,8 +153,8 @@ public class JFAtualizarFilme extends JFrame {
 		
 		LBLId.setText(String.valueOf(f.getIdFilme()));
 		textTitulo.setText(f.getTitulo());
-		textSinopse.setText(f.getSinopse());
 		textCategoria.setText(f.getCategoria());
+		textSinopse.setText(f.getSinopse());
 		JSDuracao.setValue(f.getDuracao());
 		if(f.isDublado() == true) {
 			RBDublado.setSelected(true);

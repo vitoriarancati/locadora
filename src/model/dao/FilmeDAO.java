@@ -20,9 +20,9 @@ public class FilmeDAO {
 	try {
 		stmt = con.prepareStatement("INSERT INTO FILME (titulo, duracao, sinopse, categoria, dublado) VALUES(?,?,?,?,?)");
 		stmt.setString(1,f.getTitulo());
-		stmt.setInt(2, f.getDuracao());
-		stmt.setString(3, f.getSinopse());
-		stmt.setString(4, f.getCategoria());
+		stmt.setString(2, f.getCategoria());
+		stmt.setInt(3, f.getDuracao());
+		stmt.setString(4, f.getSinopse());
 		stmt.setBoolean(5, f.isDublado());
 		
 		stmt.executeUpdate();
@@ -77,9 +77,9 @@ public class FilmeDAO {
 			if(rs != null && rs.next()) {
 				f.setIdFilme(rs.getInt("idFilme"));
 				f.setTitulo(rs.getString("titulo"));
-				f.setDuracao(rs.getInt("duracao"));
-				f.setSinopse(rs.getString("sinopse"));
 				f.setCategoria(rs.getString("categoria"));
+				f.setSinopse(rs.getString("sinopse"));
+				f.setDuracao(rs.getInt("duracao"));
 				f.setDublado(rs.getBoolean("dublado"));
 			}
 		}catch(SQLException e) {
@@ -95,10 +95,11 @@ public class FilmeDAO {
 		try {
 			stmt = con.prepareStatement("UPDATE filme SET titulo=?, categoria=?, sinopse=?, duracao=?, dublado=? WHERE idFilme=?;");
 			stmt.setString(1,f.getTitulo());
-			stmt.setInt(2, f.getDuracao());
+			stmt.setString(2, f.getCategoria());
 			stmt.setString(3, f.getSinopse());
-			stmt.setString(4, f.getCategoria());
+			stmt.setInt(4, f.getDuracao());
 			stmt.setBoolean(5, f.isDublado());
+			stmt.setInt(6, f.getIdFilme());
 			stmt.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Filme atualizado com sucesso!");
 		} catch (SQLException e) { 
