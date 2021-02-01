@@ -50,7 +50,7 @@ public class JFListarClientes extends JFrame {
 	 * Create the frame.
 	 */
 	public JFListarClientes() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 704, 429);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,7 +82,7 @@ public class JFListarClientes extends JFrame {
 		
 		JButton BTNCadastrar = new JButton("Cadastrar Cliente");
 		BTNCadastrar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 12));
-		BTNCadastrar.setBounds(43, 330, 183, 36);
+		BTNCadastrar.setBounds(10, 330, 159, 36);
 		contentPane.add(BTNCadastrar);
 		
 		JButton BTNAlterar = new JButton("Alterar Cliente");
@@ -98,13 +98,34 @@ public class JFListarClientes extends JFrame {
 			}
 		});
 		BTNAlterar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 12));
-		BTNAlterar.setBounds(258, 330, 172, 36);
+		BTNAlterar.setBounds(179, 330, 159, 36);
 		contentPane.add(BTNAlterar);
 		
 		JButton BTNExcluir = new JButton("Excluir Cliente");
+		BTNExcluir.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		if(JTListar.getSelectedRow() != -1) {
+			int opcao = JOptionPane.showConfirmDialog(null, "Deseja excluir o cliente selecionado?","Exclusão",JOptionPane.YES_NO_OPTION);
+					if (opcao == 0) {
+						ClienteDAO dao = new ClienteDAO();
+						Cliente c = new Cliente();
+						c.setIdCliente((int) JTListar.getValueAt(JTListar.getSelectedRow(), 0));
+						dao.delete(c);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecione um cliente!");
+				}
+			readJTable();
+			}
+		});
 		BTNExcluir.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 12));
-		BTNExcluir.setBounds(479, 330, 167, 36);
+		BTNExcluir.setBounds(348, 330, 168, 36);
 		contentPane.add(BTNExcluir);
+		
+		JButton BTNCancelar = new JButton("Cancelar");
+		BTNCancelar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 12));
+		BTNCancelar.setBounds(526, 330, 152, 36);
+		contentPane.add(BTNCancelar);
 		
 		readJTable();
 	}

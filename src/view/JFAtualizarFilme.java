@@ -25,15 +25,13 @@ import model.bean.Filme;
 import model.dao.FilmeDAO;
 
 public class JFAtualizarFilme extends JFrame {
-
+//2
 	private JPanel contentPane;
 	private JTextField textTitulo;
 	private JTextField textCategoria;
 	private static int id;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,7 +49,7 @@ public class JFAtualizarFilme extends JFrame {
 	 * Create the frame.
 	 */
 	public JFAtualizarFilme(int id) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 758, 491);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -178,6 +176,7 @@ public class JFAtualizarFilme extends JFrame {
 					f.setDublado(false);
 				}
 				dao.update(f);
+				dispose();
 			}
 			});
 		BTNAltera.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 14));
@@ -188,12 +187,22 @@ public class JFAtualizarFilme extends JFrame {
 		BTNLimpar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 14));
 		BTNLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				textTitulo.setText(null);
+				textCategoria.setText(null);
+				textSinopse.setText(null);
+				JSDuracao.setValue(0);
+				audio.clearSelection();
 			}
 		});
 		BTNLimpar.setBounds(311, 390, 120, 36);
 		contentPane.add(BTNLimpar);
 		
 		JButton BTNCancelar = new JButton("Cancelar\r\n");
+		BTNCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		BTNCancelar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 14));
 		BTNCancelar.setBounds(525, 390, 120, 36);
 		contentPane.add(BTNCancelar);

@@ -47,7 +47,7 @@ public class JFAtualizarClientes extends JFrame {
 	 * Create the frame.
 	 */
 	public JFAtualizarClientes(int id) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 657, 447);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -129,6 +129,14 @@ public class JFAtualizarClientes extends JFrame {
 		
 		
 		JButton BTNLimpar = new JButton("Limpar\r\n");
+		BTNLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textNome.setText(null);
+				textCPF.setText(null);
+				textEmail.setText(null);
+				JSIdade.setValue(null);
+			}
+		});
 		BTNLimpar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 14));
 		BTNLimpar.setBounds(250, 355, 120, 36);
 		contentPane.add(BTNLimpar);
@@ -149,14 +157,19 @@ public class JFAtualizarClientes extends JFrame {
 				c.setNomecompleto(textNome.getText());
 				c.setIdade(Integer.parseInt(JSIdade.getValue().toString()));
 				c.setEmail(textEmail.getText());
-			
 			dao.update(c);
+			dispose();
 			}});
 		BTNCadastrar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 14));
 		BTNCadastrar.setBounds(65, 355, 120, 36);
 		contentPane.add(BTNCadastrar);
 		
 		JButton BTNCancelar = new JButton("Cancelar");
+		BTNCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		BTNCancelar.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 14));
 		BTNCancelar.setBounds(436, 355, 120, 36);
 		contentPane.add(BTNCancelar);
