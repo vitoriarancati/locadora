@@ -12,7 +12,7 @@ public class Cliente {
 	}
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
-	}
+	}//0
 	public String getCpf() {
 		return cpf;
 	}
