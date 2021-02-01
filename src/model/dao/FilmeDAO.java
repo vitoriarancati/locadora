@@ -18,11 +18,11 @@ public class FilmeDAO {
 	PreparedStatement stmt = null;
 	
 	try {
-		stmt = con.prepareStatement("INSERT INTO FILME (titulo, duracao, sinopse, categoria, dublado) VALUES(?,?,?,?,?)");
+		stmt = con.prepareStatement("INSERT INTO FILME (titulo,  categoria, sinopse, duracao, dublado) VALUES(?,?,?,?,?)");
 		stmt.setString(1,f.getTitulo());
 		stmt.setString(2, f.getCategoria());
-		stmt.setInt(3, f.getDuracao());
-		stmt.setString(4, f.getSinopse());
+		stmt.setString(3, f.getSinopse());
+		stmt.setInt(4, f.getDuracao());
 		stmt.setBoolean(5, f.isDublado());
 		
 		stmt.executeUpdate();
@@ -109,6 +109,19 @@ public class FilmeDAO {
 			ConnectionFactory.closeConnection(con, stmt);
 		}
 	}
+	public void delete(Filme f) {
+		Connection con =  ConnectionFactory . getConnection ();
+		PreparedStatement stmt =  null ;
+		
+		try {
+			stmt = con.prepareStatement ( "DELETE FROM filme WHERE idFilme =? " );
+			stmt . setInt(1 , f.getIdFilme ());
+			stmt . executeUpdate ();
+			JOptionPane . showMessageDialog ( null , "Filme excluído com sucesso!" );	
+		} catch (SQLException e) {
+			JOptionPane . showMessageDialog ( null , "Erro ao excluir: " + e);
+		} finally {
+			ConnectionFactory.closeConnection (con, stmt);
+		}
+	}
 }
-
-
